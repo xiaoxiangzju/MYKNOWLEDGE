@@ -1,0 +1,8 @@
+git上查看远程的库信息，使用
+git remote -v
+推送分支的命令git push origin brachname，如果推送失败，则先用git pull抓取
+远程的新提交，如果想在本地创建与远程分支对应的分支就使用
+git checkout -b brachnmae origin/brachname，名称最好一致，
+同样如果git pull提示说没有追踪信息，表示本地分支和远程分支的链接关系没有创建，这个
+时候使用git brach --set-upstream brachname origin/brachname来创建联系，最后一点
+从远程抓取分支，使用git pull，如果有冲突，则先解决冲突。

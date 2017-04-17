@@ -1,0 +1,4 @@
+git上面的一个方法就是使用git stash保存当前工作，这样可以使当前的工作区为干净，
+然后去切换到更紧急的事情上去，git stash list将会列出所有的stash清单，可以使用
+git stash apply [stashlist id],来恢复当前的保存，然后使用git stash drop，或者
+git stash pop来把当前stashlist删除，这里主要是区分下一个和多个stash list的情况
