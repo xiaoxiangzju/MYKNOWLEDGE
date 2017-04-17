@@ -1,0 +1,6 @@
+git上我们可以定制自己的git环境，类似于linux的bash
+git config --global color.ui true
+如果想把某些文件忽略点，直接生成一个.gitignore文件，其中填上你要不理会的
+文件，可以使用正则式，最后提交到远程上面即可，这步可别忘了，如果想强行添加
+就使用git add -f filename，或者发现某个规则不对，通过
+git check-ignore -v object就可以知道到底哪里错了。它会查找到对应的文件

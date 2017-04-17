@@ -1,0 +1,22 @@
+tag就是commit提交的标签版，方便管理，既然说道tag
+那就必须要创建tag，命令
+git tag tagname 
+而要看tag的信息，那就使用git tag，标签默认是打在最新
+的提交上的，要查出所有的commit id，使用命令
+git log --pretty=oneline --abbrev-commit查看所有的commit
+而对某一id打上标签，就使用
+git tag tagname commitid
+显示出来的git tag名字，如果想查看一个具体tag
+使用git show tagname，
+如下的tag最全命令
+git tag -a tagname -m "tips" id
+id不需要写全，git tag -s tagname -m "tips" id
+是一种签名制
+如果要将某个标签删除，可以使用
+git tag -d tagname ，要远程同步使用
+git push origin tagname（具体一个标签）
+git push origin --tags (所有标签）
+如果要删除远程上的tagname，那么使用
+git tag -d tagname
+如后使用git push origin：refs/tags/tagname
+就可以删除远程上的标签，缺一不可
