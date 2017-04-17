@@ -1,0 +1,11 @@
+git上面的分支是个很容易掌握的东西
+，一般而言只有一个分支叫做master，如果要查看当前分支就使用
+git branch命令，
+创建分支，可以使用git branch name即可，
+切换分支，使用git check name即可
+合并的明亮，创建并切换分支
+git checkout -b name
+合并某个分支到当前分支就是git merge name，注意这里的
+合并采用的是快进模式，也就是直接把master指向当前name分支，
+最后删除分支
+git branch -d name删除某个分支

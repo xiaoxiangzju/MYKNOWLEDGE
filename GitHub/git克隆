@@ -1,0 +1,4 @@
+要从远程克隆github仓库，命令很简单，只需要通过
+一个命令即可，
+git clone git@github.com:gitlab/dir.git
+这里的命令就不详解了，以前就用过了

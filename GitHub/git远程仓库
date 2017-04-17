@@ -1,0 +1,8 @@
+git与远程仓库的同步问题，首先就是要在远程github上面建立一个仓库，然后在本地git仓库上运行git remote add origin git@github.com:gitlab/dir
+这里的gitlab就是github账户名，另外dir就是仓库名，origin是远程仓库名字，默认的叫法，也可以改成其他的，但是，方便记忆，
+下面就是把本地库的所有内容推送到远程库上
+git push -u origin master，
+这里u不但会把本地mater分支推送到远程master分支上，还会把本地上的
+master分支于远程master关联起来，这样以后只需要运用
+git push origin master就可以了
+
