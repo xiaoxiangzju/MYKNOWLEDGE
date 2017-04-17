@@ -1,0 +1,7 @@
+git其实就是一个目录，这个目录最好保持空（初始），这样就比较干净，
+同时为了创建git我们必须在该目录下运行git init初始化，颇有程序编写的味道，
+如下几个简单命令
+git add file1.txt
+git add file2.txt file3.txt
+git commit -m "tips" 
+

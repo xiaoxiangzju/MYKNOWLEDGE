@@ -1,0 +1,16 @@
+git上面管理的就是各种版本，要查看所有的git提交状况，就是通过
+git log
+他会按照新旧状态显示出来，其中有几点要注意下，比如
+commit id，这是每次提交的id号，比较长，但实际应用时候也不必写那么全，
+另外一个细节点，HEAD指向当前最新版本，上一个版本就是HEAD^,再上一版本就是
+HEAD^^,多了就按照数字来写，比如HEAD～100,记住返回到以前版本有风险，因为以后的
+版本就丢失了，要想恢复以前版本，就要使用
+git reset --hard （id或者HEAD符号）
+--hard这个意思后来添加
+不过在未关闭当前会话时候，可以通过查看git reflog来查出所有的id号，
+命令总结如下
+git log
+git log --pretty=oneline
+git reset --hard HEAD^
+git reflog
+最后这个命令类似于linux的history

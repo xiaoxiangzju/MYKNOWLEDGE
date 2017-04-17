@@ -1,0 +1,6 @@
+git安装，很容易，重要的是要记住安装完成git后，
+要使用如下命令，
+git config --global user.name "name"
+git config --global user.email "email"
+这里这样配置表示，这里的global表示，这台机器上的所有git仓库都是使用这个配置的
+
