@@ -1,0 +1,28 @@
+一般而言，首先就是平台层，平台就是所谓的OpenCL设备和OpenCL框架的组合，首先就是查询平台，查询设备，创建上下文，然后运行时候创建命令队列，创建内存对象，最后就是创建程序对象，编译程序对象，创建内核对象，设置内核参数，最后执行内核，执行完成之后就是资源回收。
+这里就是平台函数：
+cl_int clGetPlatformIDs(cl_uint num_entries,cl_platform_id * platforms,cl_uint * num_platforms);
+cl_int clGetPlatformInfo(cl_platform_id platform,cl_platform_info param_name,size_t param_value_size,void* param_value,size_t* param_value_size_ret);
+这里就是设备函数：
+cl_int clGetDeviceIDs(cl_platform_id platform,cl_device_type device_type,cl_uint num_entries,cl_device_id* devices,cl_uint* num_devices);
+cl_int clGetDeviceInfo(cl_device_id device,cl_device_info param_name,size_t param_value_size,void *param_value,size_t* param_value_size_ret);
+对于上下文，就是有一点上下文关联的所有计算设备必须全部来自同一个平台，对于不同平台的设备，需要为各个平台独立地创建上下文，对于同一个平台设备，上下文可以关联多个设备，同一个平台多个设备都可以关联到不同的上下文，这里就是上下文函数
+cl_context clCreateContext(const cl_context_properties * properties,cl_uint num_devices,const cl_device_id* devices,void (CL_CALLBACK * pfn_notify )(const char*,const void*,size_t,void*),void* user_data,cl_int* errcode_ret)
+
+cl_context clCreateContextFromType(const cl_context_properties* properites,cl_device_type device_type,void(CL_CALLBACK* pfn_notify)(const char*,const void*,size_t,void*),void* user_data,cl_int* errcode_ret)
+
+cl_int clGetContextInfo(cl_context context,cl_context_info param_name,size_t param_value_size,void* param_value,size_t* param_value_size_ret)
+
+创建命令队列，以前的OpenCL版本只允许主机向设备发送命令，后来的OpenCL版本允许设备也向主机发送命令，这里函数如下
+cl_command_queue clCreateCommanQueueWithProperties(cl_context context,cl_device_id device,const cl_queue_properteis* properties,cl_int* errcode_ret)
+
+cl_int clGetCommandQueueInfo(cl_command_queue command_queue,cl_command_queue_info parame_name,size_t param_value_size,void* param_value,size_t *param_value_size_ret);
+
+这里是程序对象的函数：
+cl_program clCreateProgramWithSource(cl_context context,cl_uint count,const char** strings,const size_t* lengths,cl_uint* errcode_ret)
+
+cl_program clCreateProgreamWithBinary(cl_context context,cl_uint num_devices,const cl_device_id * device_list,const size_t* lengths,const unsigned char** binaries,cl_int* binary_status,cl_int* errcode_ret)
+这里一个是从源码创建程序对象，一个从二进制创建程序对象，
+
+OpenCL是一个跨平台标准，只有在选择设备对象后才能确定将会运行在何种设备上，所以在运行前需要对程序对象进行构建，如下代码所示：
+cl_int clBuildProgram(cl_program program,cl_uint num_devices,const cl_device_id* device_list,const char* options,void (CL_CALLBACK* pfn_notify)(cl_program program,void* user_data),void* user_data)
+
