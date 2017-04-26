@@ -1,0 +1,6 @@
+OpenCL构建程序对象通过如下函数：
+cl_int clBuildProgram(cl_program program,cl_uint num_devices,const cl_device_id* device_list,const char* option,void (CL_CALLBACK* pfn_notify)(cl_program program,void* user_data),void* user_data)
+其中option是编译选项
+而查询程序对象的信息，可以通过
+cl_int clGetProgramInfo(cl_program program,cl_program_info param_name,size_t param_value_size,void* param_value,size_t* param_value_size_ret)
+

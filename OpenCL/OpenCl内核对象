@@ -1,0 +1,13 @@
+OpenCL中的内核对象函数如下所示:
+cl_kernel clCreateKernel(cl_program program,const char* kernel_name,cl_int* errcode_ret);
+这里kernel_name是程序对象中函数名字带kernel标志符号的
+这是创建单个内核对象模式的函数，下面就是创建多个内核对象的函数
+cl_int clCreateKernelInProgram(cl_progam program,cl_uint num_kernels,cl_kernel* kernels,cl_uint* num_kernels_ret)
+设置好了内核之后，下面就是要设置好内核的调用参数，那么下面是它们的函数
+cl_int clSetKernelArg(cl_kernel kernel,cl_uint arg_index,size_t arg_size,const void* arg_value)
+其中，arg_index是参数从左至右的位置，从0开始，关于参数的设置性质太过繁琐，查询即可，而查询内核的信息函数如下:
+cl_int clGetkerInfo(cl_kernel kernel,cl_kernel_info param_name,size_t param_value_size,void* param_value,size_t* param_value_size_ret);
+最后就是执行内核，通过如下函数：主要记住就是内核执行是通过命令队列来执行的，因为先前的命令队列的创建都已经关联好了设备了
+cl_int clEnqueueNDrangeKernel(cl_command_queue command_queue,cl_kernel kernel,
+cl_uint work_dim,const size_t* global_work_offset,const size_t* global_work_size,const size_t* local_work_size,cl_uint num_events_in_wait_list,const cl_event * event_wait_list,cl_event* event);
+最后值得一提的是内核对象的返回值必须是void
