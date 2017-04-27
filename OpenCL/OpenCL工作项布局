@@ -1,0 +1,17 @@
+工作项布局主要通过如下函数得出：
+uint get_work_dim() 返回使用的维度数目
+size_t get_global_size(uint dim) 返回指定维度的全局工作项数目
+size_t get_global_id(uint dim)返回指定维度的全局工作项ID
+size_t get_global_offset(uint dim)返回指定维度的全局工作项ID初始偏移量
+对应的工作组函数如下所示
+size_t get_num_groups(uint dim)
+size_t get_group_id(uint dim)
+size_t get_local_id(uint dim)
+size_t get_local_size(uint dim)
+
+重点是讲解如下函数clEnqueueNDRangeKernel(cmdqueue,kernel,dim,offset,globalSize,localSize,0,NULL,NULL);
+这里dim是维度，比如2指2个维度
+offset制定全局的初始偏移
+globalSize指定各个维度上的大小，全局的
+localsize制定各个维度上的局部大小
+记住局部没有偏移，从0开始

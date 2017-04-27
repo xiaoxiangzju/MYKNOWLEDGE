@@ -1,0 +1,13 @@
+OpenCL中关于数据复制分为矢量数据拷贝，和标量数据拷贝
+关于矢量数据拷贝，同类型之间可以直接使用=，
+关于加载多个标量数据到矢量数据中有如下方法
+gentypen vloadn（size_t offset,const gentype* p)
+表示从p+offset中复制n个数据到gentype的矢量数据中，
+gentype vstoren（gentypen data,size_t offset,gentype* p)
+表示从p+offset中存储从data复制过来的数据
+全局存储器是片外存储空间，局部存储器是片内存储空间，如下的函数实现工作组内全局存储器向局部存储器之间复制数据
+event_t async_work_group_copy(local(global) gentype* dst,const global(local) gentype* src,size_t num_gentypes,event_t event)
+event_t async_work_group_strided_copy(local(global) gentype* dst,const global(local) gentype* src,size_t num_gentype,size_t dst_stride,event_t event)
+这里关于细节不大容易理解，所以不细讲了。
+void prefetch（const global gentype* p,size_t num_gentypes)
+表示把数据从全局存储器预取到全局缓存中，当需要使用这些数据时直接从全局缓冲区中读取。
