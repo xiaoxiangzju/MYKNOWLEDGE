@@ -1,1 +1,40 @@
 at命令是linux上只运行一次的执行命令，该命令一般不安装，所以在/etc/init.d/目录下没有atd这个文件，所以先安装才能看到
+at命令的格式如下所示
+at [-m] Time
+这里m表示at工作完成之后，以email的方式通知使用者该工作已经完成
+Time就是我们设置的时间了，主要格式包括两种一种是分号制度，一种是符号制度，
+HH:MM  ex>04:00在今天的HH:MM执行工作，如果超过，则明天该时刻执行
+HH:MM YYYY-MM-DD 在某年某月某日某个具体时间点执行
+HH:MM[am|pm] [Month] [Date] ex> 04pm December 3
+HH:MM[am|pm] +number [minutes|hours|days|weeks}
+ex >now +5 minutes ex >04pm +3 days
+这里就是用到了符号制度了，一般而言当你运行at命令后，后面就会提示出你该做的事情提示符了，以[ctrl] +d 表示输入结束;例子如下所示
+at now +5 minutes
+at> /bin/mail dmtsai -s "testing at job" </root/.bashrc表示将./bashrc这个文件发送给dmtsai
+而要删除一个at工作，通过atq [jobnumber]来查询你的工作，
+比如atq 
+10  2005-09-15 23：00 a root 表示该工作号码为10,任务下达者为root
+删除一个工作只需要使用atrm jobnum
+
+--------------------------------------------------------------------
+crontab周期运行命令，和at命令一样在/etc目录下有一个配置文件确定那些人可以使用这个命令，以.allowed和.deny的后缀结尾，不过at是一次的，而crontab则运行周期是循环的，下面是crontab的定义方法
+crontab [ -u username] [-l|-e|-r]
+参数名称：
+-u：只有root账户才能使用这个使用
+-e：编辑crontab的工作内容
+-l：查阅crontab的工作内容
+-r：移除crontab的工作内容
+比如例子如下
+crontab -e将会进入vi编辑界面，每个工作都是一行
+0    12  *   *   * mail dmtsai -s "at 12:00" <~/.bashrc
+分   时  日  月  周   指令串
+关于其中的时间设置，有几点要说的就是*代表任何，,代表并列，-代表间隔
+*/n搭配使用代表每隔多长;
+另外记住的一点是每个记录的工作都会存入var/spool/cron/用户名中，而每个工作完成后都会记录到/var/log/cron中，
+另外如果想把一个任务删除可以使用crontab -e来编辑，只有全部删除才能使用crontab -r
+以上都是对于用户级别而言的，如果对于系统级别而言，则不能如此，则只需要编辑/etc/crontab这个文件即可，系统级别的执行文件对应/etc/init.d/crond,重启带上restart即可
+可以打开/etc/crontab看看该文件，其中有几个参数需要说明一下，首先就是MAILTO，它代表执行出错时候邮件信息发送给谁，可以修改为自己，里面的run-parts后接的就是对应不同粒度的执行文件，前面的时间格式和用户任务一样，不再赘述
+他的形态格式有两种，一种是指令模式，一种是目录模式，如下所示
+01 * * * * dmtsai mail -s "testing" kiki <home/dmtsai/test.txt
+*/5 * * * * root run-parts /root/runcron
+前者每个小时执行一次，后者每5分钟执行一次,且在/root/runcron这个目录里面执行所有可执行文件.
