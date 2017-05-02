@@ -1,0 +1,35 @@
+个多维数组类型,它是numpy的内容
+创建ndarray的办法如下，可以通过列表的转化
+data1=[6,7.5,8,0,1]
+arr1=np.array(data1)
+
+属性方面
+ndarray.ndim返回数组的维
+ndarray.dtype返回元素的类型
+ndarray.shape返回数组形状
+
+此外还有几种创建格式：
+np.zeros(int)
+np.zeros((,))
+
+np.astype(type)是改变元素的类型，且生成一个新的数组
+不同数组之间运算叫做广播，数组和list都支持切片，不同之处在于数组的是视图，改变反
+映在原来数组中，而list就不是这样,要与list一样使用copy函数
+ndarray支持多维的选择分片，还有bool数组，可以配合多维选择分片使用，注意多维的选>择分片是多个参数
+比如arr[:2,1:] 而多行选取则是一个列表arr[[3,5,1]]
+ndarray_ix_(list,list)用于选择一个数组的矩形区域
+ndarray.T是返回其转置
+np.dot(array1,array2)计算array*array2
+np.sqrt(array)计算每个元素的sqrt
+np.exp(array)计算每个元素的exp
+np.maxinum(array1,array2)计算两个array对应位置的最大值
+np.where(boolarr,array1,array2) 如果boolarr则array1否则array2
+bool数组可以转化为1,0数组
+array.sort()排序
+np.unique(array)返回array中唯一值
+np.in1d(array1,array2)检查array1中的元素是否在array2中
+np.savez(file,a=arr1,b=arr2)保存数组（多个）到文件中
+np.save(file,array)保存数组到文件中
+np.load(file)读取数组内存中
+np.loadtxt(file.txt,delimiter=',') 以，为分隔符读取文件中的数组
+array1.dot(array2) 运行array1*array2
