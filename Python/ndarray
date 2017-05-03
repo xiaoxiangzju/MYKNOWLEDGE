@@ -1,4 +1,4 @@
-个多维数组类型,它是numpy的内容
+一个多维数组类型,它是numpy的内容
 创建ndarray的办法如下，可以通过列表的转化
 data1=[6,7.5,8,0,1]
 arr1=np.array(data1)
