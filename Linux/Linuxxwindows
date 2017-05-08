@@ -1,0 +1,11 @@
+linux上的GUI是两个部分组成，一个是xclient，他计算画图的部分
+而xserver是管理硬件，执行画图的部分，所以xserver监听硬件消息，然后发送给
+xclient，最后根据xclient返回的信息画解密，而windows manager则主要就是一个特殊功能的xclient，它可以提供更多的关于窗口桌面等的管理信息
+startx启动的时候就是启动xwindows了，主要会去读取两个文件，优先读取家目录下的
+.xinitrc和.xserverrc,如果咩有就去/etc/X11/xinit/这个目录读取xinitrc和
+xserverrc这两个文件按，并最终通过xinit来执行
+不过startx也可以带参数，这样不采用系统自带的
+命令格式为
+startx [x client option] --[x server option]
+最终调用的是xinit [client option] -- [server option'
+
