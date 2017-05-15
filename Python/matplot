@@ -1,0 +1,38 @@
+Matplot主要用来绘图，用ipython启动时候，带上--pylab参数
+pyplot.figure()函数生成一副图像
+figure.add_subplot(int,int ,int)将在一副图像中添加多个子图
+AxeSubplot.hist(randn(100),bins=20,color='k',alpha=0.3)将会在子图上绘图
+AxeSubplot.scatter(np.arange(30),np.arange(30)*3*randn(30))将会在子图上绘图
+前者是直方图，后者绘制点图
+plt.subplots(2,3) 将会返回一个图像和一个子图（2×3）数组
+关于这个函数的众多参数可以参考文档
+plt.subplots_ajust()参数自己查询，可以完成子图的某些属性，是个顶级函数
+关于plt.plot()函数的众多参数可以参考文档
+关于某些控制图表范围，刻度位置，刻度标签等等的函数，有两种方式来调用，一种就是传入函数，另外一种是不传入参数，前者是设置，后者是获取
+Axesubplot.set_xticks([])设置横坐标
+Axesubplot.set_xticklabels([string],rotation=30,fontsize='small')设置坐标标签
+Axesubplot.set_title(" ") 设置图像标题
+Axesubplot.set_xlabel(' ')设置横坐标的标题
+对于一个需要区分不同的线条的图像，用label=‘’这个函数
+Axesubplot.plot(randn(1000).cumsum(),'k--',label='two')
+关于注释的方法还有text，arrow和annotate等函数
+这些函数的具体用法直接查文献吧
+patch是一个图像的一部分，通过调用plt调用各种图像函数来生成需要的patch，然后通过
+Axesubplot.add_patch(patch)来添加入图像中
+plt.savefig("")将会生成一个图片
+plt.savefig('figpath.png',dpi=400,bbox_inches='tight')将会生成一个图片，分辨率为400,除去边框空白
+另外还可以把图像存储入各种流对象中，方便操作
+另外还有一种方法就是对图像的各种设置进行修改比如
+plt.rc('figure',fgsize=[10,10])将把图像设置为10×10大小
+这些方法其实都是写入一些配置文件中，就像bash一样，可以在当前目录的.matplotlibrc进行设置
+-------------------------------------------------------------------------------------------------------------------------------
+其实pandas也能实现画图功能，而且比matplot更加方便
+Series.plot()函数也能实现画图
+以index为x轴，
+DataFrame.plot()函数也能实现画图，不过column作为区别
+-------------------------------------------------------
+直方图和密度图
+关于这部分过于复杂，在书中250页左右，可以用时再翻看
+---------------------------------------------------------
+
+
